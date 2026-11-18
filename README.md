@@ -1,6 +1,6 @@
 # US Hospital Price Transparency DuckDB Analytics
 
-![Python](https://shields.io)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 ![DuckDB](https://img.shields.io/badge/DuckDB-OLAP-yellow)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-green)
 ![OpenPyXL](https://img.shields.io/badge/OpenPyXL-Excel%20Reporting-orange)
