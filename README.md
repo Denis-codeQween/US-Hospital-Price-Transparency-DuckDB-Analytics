@@ -1,11 +1,13 @@
 # US Hospital Price Transparency DuckDB Analytics
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
-![DuckDB](https://img.shields.io/badge/DuckDB-OLAP-yellow)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-green)
-![OpenPyXL](https://img.shields.io/badge/OpenPyXL-Excel%20Reporting-orange)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
+![DuckDB](https://img.shields.io/badge/DuckDB-OLAP-yellow.svg)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-green.svg)
+![OpenPyXL](https://img.shields.io/badge/OpenPyXL-Excel%20Reporting-orange.svg)
 
 High-speed **Python + DuckDB + Pandas** analytics pipeline comparing **3M+ US hospital pricing records** (`CPT`, `MS-DRG`, `HCPCS`, `Revenue Codes`) across major insurance carriers with multi-sheet executive Excel reporting.
+
+![Executive Excel Report Preview](docs/hospital_pricing_excel_report.png)
 
 ---
 
@@ -29,10 +31,12 @@ The pipeline queries **3.0M+ insurance rate rows** in seconds using in-process D
 ## Repository Structure
 
 ```text
-├── step1_build_lookup.py       # Extracts unique billing codes & builds clinical care-category lookup
-├── step2_run_full_report.py    # Runs DuckDB analytics, cross-hospital matching & 10-tab Excel export
-├── requirements.txt            # Python dependencies (duckdb, pandas, numpy, openpyxl)
-└── README.md                   # Project documentation
+├── step1_build_lookup.py                 # Extracts unique billing codes & builds clinical care-category lookup
+├── step2_run_full_report.py              # Runs DuckDB analytics, cross-hospital matching & 10-tab Excel export
+├── requirements.txt                      # Python dependencies (duckdb, pandas, numpy, openpyxl)
+├── docs/
+│   └── hospital_pricing_excel_report.png # Sample multi-sheet executive Excel report output
+└── README.md                             # Project documentation
 ```
 
 ---
@@ -60,11 +64,21 @@ The generated workbook includes dedicated tabs covering:
 
 ---
 
+## Data Sources
+
+This pipeline uses publicly available CMS Hospital Price Transparency datasets parsed into DuckDB by Trilliant Health (Oria):
+
+- **St. Luke's Hospital – Bethlehem Campus (`51.5 MB`, `1.29M` rate rows):** [Download & Schema Details](https://oria-data.trillianthealth.com/hospital/st_lukes_hospital_bethlehem_campus-c43ea)
+- **Lehigh Valley Hospital – Cedar Crest / LVHN (`129.0 MB`, `1.70M` rate rows):** [Download & Schema Details](https://oria-data.trillianthealth.com/hospital/lehigh_valley_hospital_cedar_crest-9591f)
+- **Trilliant Oria DuckDB Documentation:** [Data Dictionary & Schema Guide](https://oria-data.trillianthealth.com/docs#consolidated-download)
+
+---
+
 ## Quick Start
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Denis-codeQween/US-Hospital-Price-Transparency-DuckDB-Analytics.git
+   git clone https://github.com
    cd US-Hospital-Price-Transparency-DuckDB-Analytics
    ```
 
@@ -73,9 +87,9 @@ The generated workbook includes dedicated tabs covering:
    pip install -r requirements.txt
    ```
 
-3. **Download public CMS DuckDB datasets** from the [Trilliant Oria Hospital Price Transparency Portal](https://trillianthealth.com) and place both `.duckdb` files in the project root.
+3. **Place both `.duckdb` files in the project root** (`st_lukes_hospital_bethlehem_campus-c43ea_parsed.duckdb` and `lehigh_valley_hospital_cedar_crest-9591f_parsed.duckdb`).
 
-4. **Run the pipeline:**
+4. **Run the two-stage pipeline:**
    ```bash
    python step1_build_lookup.py
    python step2_run_full_report.py
