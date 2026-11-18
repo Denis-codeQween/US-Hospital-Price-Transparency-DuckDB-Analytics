@@ -78,7 +78,7 @@ This pipeline uses publicly available CMS Hospital Price Transparency datasets p
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/Denis-codeQween/US-Hospital-Price-Transparency-DuckDB-Analytics.git
    cd US-Hospital-Price-Transparency-DuckDB-Analytics
    ```
 
